@@ -15,6 +15,5 @@ func set_direction(direction: Vector2):
 	self.direction = direction
 	rotation += direction.angle() #We altered bullet to 90 degrees originally
 
-
 func _on_KillTimer_timeout():
 	queue_free() #Destroys object after timeout

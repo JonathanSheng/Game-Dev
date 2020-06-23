@@ -4,9 +4,8 @@ export (PackedScene) var Bullet
 signal player_fired_bullet(bullet, position, direction)
 onready var end_of_gun = $EndOfGun # $ finds child node
 onready var gun_direction = $GunDirection
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+onready var attack_cooldown = $AttackCooldown
+onready var animation_player = $AnimationPlayer
 
 func _process(delta: float) -> void: #Called every frame, looks for input
 	var movement_direction := Vector2.ZERO #:= enables var to be same type as right side
@@ -26,7 +25,9 @@ func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_released('shoot'):
 		shoot()
 func shoot():
-	var bullet_instance = Bullet.instance() #Create new scene with bullet
-	var direction = (gun_direction.global_position - end_of_gun.global_position).normalized()
-	emit_signal("player_fired_bullet", bullet_instance, end_of_gun.global_position, direction)
-	
+	if attack_cooldown.is_stopped():
+		var bullet_instance = Bullet.instance() #Create new scene with bullet
+		var direction = (gun_direction.global_position - end_of_gun.global_position).normalized()
+		emit_signal("player_fired_bullet", bullet_instance, end_of_gun.global_position, direction)
+		attack_cooldown.start()
+		animation_player.play("muzzle_flash")
