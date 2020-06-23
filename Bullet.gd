@@ -17,3 +17,9 @@ func set_direction(direction: Vector2):
 
 func _on_KillTimer_timeout():
 	queue_free() #Destroys object after timeout
+
+
+func _on_Bullet_body_entered(body): #Use body since enemy is Body
+	if body.has_method('handle_hit'):
+		body.handle_hit()
+		queue_free()

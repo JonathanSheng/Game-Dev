@@ -1,7 +1,12 @@
 extends KinematicBody2D
+
 export (int) var speed = 200 #Export enables editing in editor
 export (PackedScene) var Bullet
+
+var health: int = 100
+
 signal player_fired_bullet(bullet, position, direction)
+
 onready var end_of_gun = $EndOfGun # $ finds child node
 onready var gun_direction = $GunDirection
 onready var attack_cooldown = $AttackCooldown
@@ -31,3 +36,7 @@ func shoot():
 		emit_signal("player_fired_bullet", bullet_instance, end_of_gun.global_position, direction)
 		attack_cooldown.start()
 		animation_player.play("muzzle_flash")
+func handle_hit():
+	health -= 20
+	print('Player Hit', health)
+	
