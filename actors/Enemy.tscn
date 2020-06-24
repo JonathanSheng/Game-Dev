@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://weapons/Weapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=3]
-[ext_resource path="res://actors/Health.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/StatsContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/AI.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -25,8 +25,7 @@ region_rect = Rect2( 426, -2, 34, 46 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Health" parent="." instance=ExtResource( 4 )]
-health = 150
+[node name="StatsContainer" parent="." instance=ExtResource( 4 )]
 
 [node name="Weapon" parent="." instance=ExtResource( 2 )]
 position = Vector2( 20, 16 )
@@ -37,5 +36,11 @@ script = ExtResource( 5 )
 [node name="PlayerDetectionZone" type="Area2D" parent="AI"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/PlayerDetectionZone"]
+visible = false
 shape = SubResource( 2 )
+
+[node name="PatrolTimer" type="Timer" parent="AI"]
+wait_time = 3.0
+one_shot = true
 [connection signal="body_entered" from="AI/PlayerDetectionZone" to="AI" method="_on_PlayerDetectionZone_body_entered"]
+[connection signal="body_exited" from="AI/PlayerDetectionZone" to="AI" method="_on_PlayerDetectionZone_body_exited"]
