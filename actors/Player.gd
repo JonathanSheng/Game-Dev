@@ -1,10 +1,12 @@
 extends KinematicBody2D
 class_name Player
 
-onready var weapon = $Weapon
-onready var stats = $StatsContainer
+onready var weapon: Weapon = $Weapon
+onready var stats: Node2D = $StatsContainer
+onready var team: Node2D = $Team
 
-
+func _ready() -> void:
+	weapon.initialize(team.team)
 
 func _physics_process(delta: float) -> void: #Called every frame, looks for input
 	var movement_direction := Vector2.ZERO #:= enables var to be same type as right side
@@ -22,6 +24,9 @@ func _physics_process(delta: float) -> void: #Called every frame, looks for inpu
 	move_and_slide(movement_direction * stats.speed) #Given vector * scalar, grants movement to kinematic
 	look_at(get_global_mouse_position()) #Every frame, player looks at mouse
 
+func get_team() -> int:
+	return team.team
+	
 func handle_hit():
 	stats.health -= 20
 	print('Player Hit', stats.health)

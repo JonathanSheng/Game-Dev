@@ -1,3 +1,3 @@
 extends Node
 
-signal bullet_fired(bullet, position, direction)
+signal bullet_fired(bullet, team, position, direction)

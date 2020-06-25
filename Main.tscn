@@ -5,15 +5,25 @@
 [ext_resource path="res://weapons/Bullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://BulletManager.gd" type="Script" id=4]
 [ext_resource path="res://actors/Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/topdown-shooter/Tilesheet/tilesheet_complete_2X.png" type="Texture" id=6]
+[ext_resource path="res://actors/Ally.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 124.019, 78.2527 )
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 192, 32 )
+position = Vector2( 636.842, 188.443 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 718.464, 412.904 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 470.876, 372.093 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 657.247, -7.45081 )
 
 [node name="Bullet" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -21,10 +31,8 @@ visible = false
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
-show_behind_parent = true
-position = Vector2( 55.5729, 25.3063 )
-scale = Vector2( 1.31376, 1.62739 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 640, 640 )
+[node name="Ally" parent="." instance=ExtResource( 6 )]
+position = Vector2( 23.1263, 13.6037 )
+
+[node name="Ally2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 144.2, -43.5319 )

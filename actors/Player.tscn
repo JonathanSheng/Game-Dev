@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=1]
 [ext_resource path="res://actors/Player.gd" type="Script" id=2]
 [ext_resource path="res://actors/StatsContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://weapons/Weapon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Team.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 24 )
@@ -20,6 +21,7 @@ region_enabled = true
 region_rect = Rect2( 350, 0, 38, 44 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="StatsContainer" parent="." instance=ExtResource( 3 )]
@@ -28,5 +30,8 @@ shape = SubResource( 1 )
 position = Vector2( 24, 12 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 current = true
 editor_draw_drag_margin = true
+
+[node name="Team" parent="." instance=ExtResource( 5 )]
