@@ -11,21 +11,35 @@ export (int) var SPEED = 50
 onready var player_detection_zone = $PlayerDetectionZone
 onready var patrol_timer = $PatrolTimer
 
-var current_state: int = State.PATROL setget set_state
+var current_state: int = -1 setget set_state
 var player: Player = null
 var weapon: Weapon = null
-var actor = null
-var origin: Vector2 = global_position
+var actor: KinematicBody2D = null
 
-func _process(delta: float) -> void:
+#Patrol state
+var origin: Vector2 = global_position
+var patrol_location: Vector2 = Vector2.ZERO
+var patrol_location_reached: bool = false
+var actor_velocity: Vector2	= Vector2.ZERO
+
+func _ready() -> void:
+	set_state(State.PATROL)
+
+func _physics_process(delta: float) -> void:
 	match current_state: #switch/if statement
 		State.PATROL:
-			pass
+			if not patrol_location_reached:
+				actor.move_and_slide(actor_velocity)
+				actor.rotate_toward(patrol_location)
+				if actor.global_position.distance_to(patrol_location) < 5:
+					patrol_location_reached = true
+					actor_velocity = Vector2.ZERO
+					patrol_timer.start()
 		State.ENGAGE:
 			if player != null and weapon != null:
 				#lerp smooths rotation, takes (from, to, weight)
 				var angle_to_player = actor.global_position.direction_to(player.global_position).angle()
-				actor.rotation = lerp(actor.rotation, angle_to_player, 0.1)
+				actor.rotate_toward(player.global_position)
 				if abs(actor.rotation - angle_to_player) <= 0.1: #Shoot only when angle at player
 					weapon.shoot()
 				#Enemy moves slowly towards player
@@ -44,7 +58,9 @@ func set_state(new_state: int): #Setters for state changes, emit signal of state
 	if new_state == current_state:
 		return
 	if new_state == State.PATROL:
+		origin = global_position
 		patrol_timer.start()
+		patrol_location_reached = true
 		
 	current_state = new_state
 	emit_signal("state_changed", current_state)
@@ -61,3 +77,11 @@ func _on_PlayerDetectionZone_body_exited(body): #Stops shooting and chasing when
 		set_state(State.PATROL)
 		player = null
 		
+
+func _on_PatrolTimer_timeout():
+	var patrol_range = 50
+	var random_x = rand_range(-patrol_range, patrol_range)
+	var random_y = rand_range(-patrol_range, patrol_range)
+	patrol_location = Vector2(random_x, random_y) + origin
+	patrol_location_reached = false
+	actor_velocity = actor.velocity_toward(patrol_location)
