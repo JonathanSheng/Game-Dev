@@ -23,7 +23,11 @@ func _physics_process(delta: float) -> void: #Called every frame, looks for inpu
 	movement_direction = movement_direction.normalized() #Diagonal has higher vector, this fixes it
 	move_and_slide(movement_direction * stats.speed) #Given vector * scalar, grants movement to kinematic
 	look_at(get_global_mouse_position()) #Every frame, player looks at mouse
-
+func _unhandled_input(event):
+	if Input.is_action_pressed('shoot'): #Hold down shooting
+		weapon.shoot()
+	if event.is_action_released('Reload'):
+		weapon.start_reload()
 func get_team() -> int:
 	return team.team
 	
@@ -31,3 +35,5 @@ func handle_hit():
 	stats.health -= 20
 	print('Player Hit', stats.health)
 	
+func reload():
+	weapon.start_reload()

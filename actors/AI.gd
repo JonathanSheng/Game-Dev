@@ -24,6 +24,7 @@ var actor_velocity: Vector2	= Vector2.ZERO
 
 func _ready() -> void:
 	set_state(State.PATROL)
+	
 
 func _physics_process(delta: float) -> void:
 	match current_state: #switch/if statement
@@ -50,10 +51,12 @@ func _physics_process(delta: float) -> void:
 				print('Engaged, but no weapon/target')
 		_:
 			print('Error: found a state for our enemy that should not exist')
+
 func initialize(actor: KinematicBody2D, weapon: Weapon, team: int): #Can call AI for any actor
 	self.actor = actor
 	self.weapon = weapon
 	self.team = team
+	weapon.connect("weapon_out_of_ammo", self, "handle_reload")
 
 func set_state(new_state: int): #Setters for state changes, emit signal of state changed
 	if new_state == current_state:
@@ -66,6 +69,8 @@ func set_state(new_state: int): #Setters for state changes, emit signal of state
 	current_state = new_state
 	emit_signal("state_changed", current_state)
 		
+func handle_reload():
+	weapon.start_reload()
 
 func _on_PatrolTimer_timeout():
 	var patrol_range = 50
