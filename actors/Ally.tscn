@@ -5,8 +5,7 @@
 [ext_resource path="res://assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=3]
 [ext_resource path="res://actors/StatsContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/AI.gd" type="Script" id=5]
-[ext_resource path="res://Team.tscn" type="PackedScene" id=6]
-
+[ext_resource path="res://actors/Team.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 24 )

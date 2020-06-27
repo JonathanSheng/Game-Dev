@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 39.2517, 44.7791 )
+
+[node name="Nexus" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 0 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 461.434, -1.12621 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+margin_left = 425.05
+margin_top = -45.8
+margin_right = 498.05
+margin_bottom = 42.2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 353.299
+margin_top = -96.9494
+margin_right = 567.299
+margin_bottom = -56.9494
+text = "Walk here to enter world map"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="Area2D" to="Player" method="_on_Area2D_body_entered"]
+[connection signal="tree_entered" from="Area2D/CollisionShape2D" to="Area2D" method="_on_CollisionShape2D_tree_entered"]
