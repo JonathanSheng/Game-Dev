@@ -4,7 +4,7 @@ class_name Player
 onready var weapon: Weapon = $Weapon
 onready var stats: Node2D = $StatsContainer
 onready var team: Node2D = $Team
-
+export (int) var attack = 20
 func _ready() -> void:
 	weapon.initialize(team.team)
 
@@ -31,8 +31,10 @@ func get_team() -> int:
 	return team.team
 	
 func handle_hit():
-	stats.health -= 20
-	print('Player Hit', stats.health)
+	stats.health -= (attack * 100 / (100 +stats.def))
+	if stats.health <= 0:
+		get_tree().change_scene("res://rooms/Nexus.tscn")
+
 	
 func reload():
 	weapon.start_reload()

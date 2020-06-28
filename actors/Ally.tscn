@@ -11,7 +11,7 @@
 extents = Vector2( 20, 24 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 128.0
+radius = 192.167
 
 [node name="Ally" type="KinematicBody2D" groups=[
 "enemy",
@@ -38,7 +38,6 @@ script = ExtResource( 5 )
 [node name="DetectionZone" type="Area2D" parent="AI"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/DetectionZone"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="PatrolTimer" type="Timer" parent="AI"]

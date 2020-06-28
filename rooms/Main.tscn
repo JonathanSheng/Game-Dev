@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/Main.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://weapons/BulletManager.gd" type="Script" id=4]
 [ext_resource path="res://actors/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/Ally.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/Slime.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -16,15 +17,6 @@ position = Vector2( 124.019, 78.2527 )
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 636.842, 188.443 )
 
-[node name="Enemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 718.464, 412.904 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 470.876, 372.093 )
-
-[node name="Enemy4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 657.247, -7.45081 )
-
 [node name="Bullet" parent="." instance=ExtResource( 3 )]
 visible = false
 
@@ -34,5 +26,5 @@ script = ExtResource( 4 )
 [node name="Ally" parent="." instance=ExtResource( 6 )]
 position = Vector2( 23.1263, 13.6037 )
 
-[node name="Ally2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 144.2, -43.5319 )
+[node name="Slime" parent="." instance=ExtResource( 7 )]
+position = Vector2( 503.001, 77.0001 )

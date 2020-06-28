@@ -6,13 +6,12 @@ enum State { #List of integers, given names
 	PATROL,
 	ENGAGE
 }
-export (int) var SPEED = 100
+export (int) var SPEED = 75
 
 onready var patrol_timer = $PatrolTimer
 
 var current_state: int = -1 setget set_state
 var target: KinematicBody2D = null
-var weapon: Weapon = null
 var actor: KinematicBody2D = null
 var team: int = -1
 
@@ -31,18 +30,13 @@ func _physics_process(delta: float) -> void:
 		State.PATROL:
 			if not patrol_location_reached:
 				actor.move_and_slide(actor_velocity)
-				actor.rotate_toward(patrol_location)
 				if actor.global_position.distance_to(patrol_location) < 5:
 					patrol_location_reached = true
 					actor_velocity = Vector2.ZERO
 					patrol_timer.start()
 		State.ENGAGE:
-			if target != null and weapon != null:
+			if target != null:
 				#lerp smooths rotation, takes (from, to, weight)
-				var angle_to_player = actor.global_position.direction_to(target.global_position).angle()
-				actor.rotate_toward(target.global_position)
-				if abs(actor.rotation - angle_to_player) <= 0.1: #Shoot only when angle at player
-					weapon.shoot()
 				#Enemy moves slowly towards player
 				var direction = (target.global_position - actor.global_position).normalized()
 				var motion = direction * SPEED * delta
@@ -52,11 +46,10 @@ func _physics_process(delta: float) -> void:
 		_:
 			print('Error: found a state for our enemy that should not exist')
 
-func initialize(actor: KinematicBody2D, weapon: Weapon, team: int): #Can call AI for any actor
+func initialize(actor: KinematicBody2D, team: int): #Can call AI for any actor
 	self.actor = actor
-	self.weapon = weapon
 	self.team = team
-	weapon.connect("weapon_out_of_ammo", self, "handle_reload")
+
 
 func set_state(new_state: int): #Setters for state changes, emit signal of state changed
 	if new_state == current_state:
@@ -69,8 +62,6 @@ func set_state(new_state: int): #Setters for state changes, emit signal of state
 	current_state = new_state
 	emit_signal("state_changed", current_state)
 		
-func handle_reload():
-	weapon.start_reload()
 
 func _on_PatrolTimer_timeout():
 	var patrol_range = 50

@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/game designs/slime template.png" type="Texture" id=2]
+[ext_resource path="res://actors/Team.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/SlimeAI.gd" type="Script" id=4]
+[ext_resource path="res://actors/StatsContainer.gd" type="Script" id=5]
+[ext_resource path="res://actors/Slime.gd" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 43.7509
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 148.301
+
+[node name="Slime" type="KinematicBody2D"]
+script = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 136.742, 101.294, 83.6748, 67.7612 )
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="StatsContainer" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="SlimeAI" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="DetectionZone" type="Area2D" parent="SlimeAI"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeAI/DetectionZone"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="PatrolTimer" type="Timer" parent="SlimeAI"]
+one_shot = true
+
+[node name="Team" parent="." instance=ExtResource( 3 )]
+team = 1
+[connection signal="timeout" from="SlimeAI/PatrolTimer" to="SlimeAI" method="_on_PatrolTimer_timeout"]
