@@ -17,7 +17,7 @@ func _physics_process(delta):
 
 
 func _on_StartGame_pressed():
-	get_tree().change_scene("Nexus.tscn")
+	get_tree().change_scene("res://rooms/Nexus.tscn")
 
 func _on_QuitGame_pressed():
 	get_tree().quit()

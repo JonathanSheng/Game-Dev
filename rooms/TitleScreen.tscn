@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://rooms/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/menu/start.png" type="Texture" id=2]
 [ext_resource path="res://assets/menu/background1.jpg" type="Texture" id=3]
 
@@ -37,12 +37,8 @@ custom_constants/separation = 16
 margin_right = 317.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-anchor_left = -1.029
-anchor_right = -1.029
-anchor_bottom = 0.724
-margin_left = -1.03198
 margin_top = 16.0
-margin_right = 315.968
+margin_right = 317.0
 margin_bottom = 183.0
 
 [node name="StartGame" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer"]
