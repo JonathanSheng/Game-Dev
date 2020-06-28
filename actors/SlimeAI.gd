@@ -36,11 +36,14 @@ func _physics_process(delta: float) -> void:
 					patrol_timer.start()
 		State.ENGAGE:
 			if target != null:
+				#Add timer for slime to jump
+				SPEED = 150
 				#lerp smooths rotation, takes (from, to, weight)
 				#Enemy moves slowly towards player
 				var direction = (target.global_position - actor.global_position).normalized()
 				var motion = direction * SPEED * delta
 				actor.position += motion
+
 			else:
 				print('Engaged, but no weapon/target')
 		_:
@@ -61,7 +64,8 @@ func set_state(new_state: int): #Setters for state changes, emit signal of state
 		
 	current_state = new_state
 	emit_signal("state_changed", current_state)
-		
+
+
 
 func _on_PatrolTimer_timeout():
 	var patrol_range = 50

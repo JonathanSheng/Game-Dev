@@ -41,4 +41,6 @@ one_shot = true
 
 [node name="Team" parent="." instance=ExtResource( 3 )]
 team = 1
+[connection signal="body_entered" from="SlimeAI/DetectionZone" to="SlimeAI" method="_on_DetectionZone_body_entered"]
+[connection signal="body_exited" from="SlimeAI/DetectionZone" to="SlimeAI" method="_on_DetectionZone_body_exited"]
 [connection signal="timeout" from="SlimeAI/PatrolTimer" to="SlimeAI" method="_on_PatrolTimer_timeout"]
