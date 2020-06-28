@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=1]
+[ext_resource path="res://assets/game designs/Bullets/Bullets.png" type="Texture" id=1]
 [ext_resource path="res://weapons/Bullet.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -14,9 +14,10 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 72, 176, 8, 14 )
+region_rect = Rect2( 814, 176, 152, 288 )
 
 [node name="KillTimer" type="Timer" parent="."]
 one_shot = true

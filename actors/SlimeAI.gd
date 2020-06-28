@@ -36,10 +36,8 @@ func _physics_process(delta: float) -> void:
 					patrol_timer.start()
 		State.ENGAGE:
 			if target != null:
-				#Add timer for slime to jump
+				#Add timer for slime to jump, can't delay because this function runs every frame
 				SPEED = 150
-				#lerp smooths rotation, takes (from, to, weight)
-				#Enemy moves slowly towards player
 				var direction = (target.global_position - actor.global_position).normalized()
 				var motion = direction * SPEED * delta
 				actor.position += motion
@@ -49,6 +47,7 @@ func _physics_process(delta: float) -> void:
 		_:
 			print('Error: found a state for our enemy that should not exist')
 
+	
 func initialize(actor: KinematicBody2D, team: int): #Can call AI for any actor
 	self.actor = actor
 	self.team = team
