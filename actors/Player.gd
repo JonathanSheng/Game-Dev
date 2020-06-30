@@ -33,7 +33,7 @@ func get_team() -> int:
 func handle_hit():
 	stats.health -= (attack * 100 / (100 +stats.def))
 	if stats.health <= 0:
-		get_tree().change_scene("res://rooms/Nexus.tscn")
+		$"/root/SceneChanger".change_scene("res://rooms/Nexus.tscn")
 
 	
 func reload():
@@ -41,4 +41,4 @@ func reload():
 
 
 func _on_Area2D_body_entered(body):
-	get_tree().change_scene("res://rooms/Main.tscn")
+	$"/root/SceneChanger".change_scene("res://rooms/Main.tscn")
