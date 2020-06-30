@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Start.png-d71360a3fbb6e342cea9051a5633485d.stex"
+path="res://.import/Start Final copy.png-3e368ac840bac9092a8a9a42dd590f74.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/game designs/Start Menu/Start.png"
-dest_files=[ "res://.import/Start.png-d71360a3fbb6e342cea9051a5633485d.stex" ]
+source_file="res://assets/game designs/Start Menu/Start Final copy.png"
+dest_files=[ "res://.import/Start Final copy.png-3e368ac840bac9092a8a9a42dd590f74.stex" ]
 
 [params]
 

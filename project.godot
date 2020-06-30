@@ -39,6 +39,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalSignals="*res://globals/GlobalSignals.gd"
+SceneChanger="*res://rooms/SceneChanger.tscn"
 
 [display]
 

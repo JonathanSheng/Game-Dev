@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Quit Select.png-8d8996adc1a44aa13d44a40323caab03.stex"
+path="res://.import/Start Select Final.png-d308e7921c9055431094c7c70e480eb4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/game designs/Start Menu/Quit Select.png"
-dest_files=[ "res://.import/Quit Select.png-8d8996adc1a44aa13d44a40323caab03.stex" ]
+source_file="res://assets/game designs/Start Menu/Start Select Final.png"
+dest_files=[ "res://.import/Start Select Final.png-d308e7921c9055431094c7c70e480eb4.stex" ]
 
 [params]
 

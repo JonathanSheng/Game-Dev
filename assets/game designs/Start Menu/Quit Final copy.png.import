@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Start Select.png-e620e4a95ee608eb5ed6f20aaf60af1c.stex"
+path="res://.import/Quit Final copy.png-72e8b3f4c4ba2238fe4d9a4e932c3761.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/game designs/Start Menu/Start Select.png"
-dest_files=[ "res://.import/Start Select.png-e620e4a95ee608eb5ed6f20aaf60af1c.stex" ]
+source_file="res://assets/game designs/Start Menu/Quit Final copy.png"
+dest_files=[ "res://.import/Quit Final copy.png-72e8b3f4c4ba2238fe4d9a4e932c3761.stex" ]
 
 [params]
 
