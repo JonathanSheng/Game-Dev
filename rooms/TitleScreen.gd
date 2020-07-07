@@ -15,6 +15,5 @@ func _physics_process(delta):
 func _on_StartGame_pressed():
 	$"/root/SceneChanger".change_scene("res://rooms/Nexus.tscn")
 
-
 func _on_QuitGame_pressed():
 	get_tree().quit()

@@ -19,9 +19,10 @@ centered = false
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 969.0
-margin_bottom = 1092.0
+margin_right = 967.0
+margin_bottom = 1101.0
 rect_scale = Vector2( 1.32, 0.65 )
+size_flags_horizontal = 4
 custom_constants/margin_right = 0
 custom_constants/margin_top = 20
 custom_constants/margin_left = 0
@@ -31,10 +32,10 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 222.0
-margin_top = 386.0
-margin_right = 747.0
-margin_bottom = 706.0
+margin_left = 221.0
+margin_top = 390.0
+margin_right = 746.0
+margin_bottom = 710.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_constants/separation = 16
@@ -50,6 +51,8 @@ margin_bottom = 320.0
 [node name="StartGame" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_right = 525.0
 margin_bottom = 150.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture_normal = ExtResource( 6 )
 texture_focused = ExtResource( 5 )
 
@@ -57,6 +60,8 @@ texture_focused = ExtResource( 5 )
 margin_top = 154.0
 margin_right = 525.0
 margin_bottom = 304.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture_normal = ExtResource( 2 )
 texture_focused = ExtResource( 4 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartGame" to="." method="_on_StartGame_pressed"]
